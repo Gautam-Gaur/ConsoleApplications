@@ -1,0 +1,22 @@
+Vending Machine [LLD]
+---------------
+
+Requirements : 
+R1 -> Manages, Stores different products;
+R2 -> Each rack will hold it's unique product and quantity;
+R3 -> Payment processing should be handled
+R4 -> Remaining money should be refunded.
+
+Design Approach :
+  - Bottom UP
+  - Select nouns/entities like [Product], [Rack], [Slot], [Payment]
+  -  VendingMachine shoule handle all states 
+    - Machine States
+      1. NoMoney
+      2. MoneyInserted
+      3. Dispensing
+
+Desing Patterns :
+  -State Pattern : Instead of writing if else to get different state objects we will be handling all inside VM.
+  -Strategy Patter : This pattern let's us swap behaviour at runtime. we can use it in payment processing like payment via cash or payment via card we can swap behaviour to choose at runtime.
+
