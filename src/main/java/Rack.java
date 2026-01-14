@@ -28,4 +28,10 @@ public class Rack {
         if(quantity>0) quantity--;
     }
 
+    @Override
+    public String toString() {
+        if (product == null) return "Rack " + rackNumber + " [empty]";
+        return String.format("Rack %d: %s ×%d", rackNumber, product.getName(), quantity);
+    }
+
 }

@@ -22,7 +22,7 @@ public class VendingMachine {
     State getDispenseState(){ return dispenseState; }
 
     void setState(State state){
-
+        currentState = state;
     }
 
     double getCurrentAmount(){ return this.currentAmount; }
@@ -46,11 +46,35 @@ public class VendingMachine {
         if(change>0) System.out.printf("Returning change $%.2f%n", change);
         reset();
     }
+    public void refund(){
+        System.out.println("Refunding full amount...:" + currentAmount);
+        reset();
+    }
 
 
     private void reset(){
         currentAmount = 0.0;
         selectedRack = -1;
         setState(noMoneyState);
+    }
+
+    // Admin Operations
+    public void addRack(Rack rack){ inventory.addRack(rack); }
+    public void loadProduct(int rackNo, Product product, int qty){
+        Rack rack = inventory.getRack(rackNo);
+        if(rack == null){
+            System.out.println("No such rack: "+ rackNo);
+            return;
+        }
+        rack.loadProduct(product, qty);
+        System.out.println("Product loaded into rack successfully");
+    }
+
+    public void showInventory(){
+        System.out.println("\n=== Inventory Status ===");
+        for(Rack r : inventory.getAllRacks()){
+            System.out.println(r);
+        }
+        System.out.println("======================\n");
     }
 }
